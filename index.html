@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project 0</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <header class="border-b bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
+      <h1 class="text-2xl font-semibold">Project 0: Контрольна панель</h1>
+      <button id="themeToggleBtn" class="inline-flex items-center gap-2 rounded-md bg-gray-200 text-gray-800 px-3 py-2 shadow hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" title="Перемкнути тему">
+        <span id="themeIcon">☀️</span>
+        <span class="text-sm">Тема</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    <div class="bg-white shadow rounded-lg p-6" data-card>
+      <h2 class="text-lg font-medium mb-2">Ласкаво просимо</h2>
+      <p id="statusText" class="text-gray-600">Це стартовий Dashboard для Project 0.</p>
+      <div class="mt-6 flex items-center gap-3">
+        <input
+          id="statusInput"
+          type="text"
+          placeholder="Введіть статус"
+          class="flex-1 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+          id="updateBtn"
+          class="inline-flex items-center rounded-md bg-blue-600 text-white px-4 py-2 shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Оновити статус
+        </button>
+      </div>
+    </div>
+    <div class="bg-white shadow rounded-lg p-6 mt-6" data-card>
+      <h2 class="text-lg font-medium mb-2">Калькулятор BTC → UAH</h2>
+      <div class="text-sm text-gray-600 flex items-center gap-2">
+        <span>Поточний курс:</span>
+        <span id="btcPriceDisplay" class="font-semibold text-gray-800 transition-colors duration-300">—</span>
+        <span id="btcTrendIcon" class="text-sm font-bold">—</span>
+        <span id="btcTrendTime" class="text-xs text-gray-500 ml-1"></span>
+      </div>
+      <div class="mt-4 flex items-center gap-3">
+        <input
+          id="btcAmount"
+          type="number"
+          step="0.00000001"
+          placeholder="Кількість BTC"
+          class="flex-1 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+          id="calcBtcBtn"
+          class="inline-flex items-center rounded-md bg-blue-600 text-white px-4 py-2 shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Розрахувати
+        </button>
+        <button
+          id="refreshBtcPriceBtn"
+          class="inline-flex items-center rounded-md bg-blue-500 text-white px-4 py-2 shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Оновити курс
+        </button>
+      </div>
+      <p id="btcResult" class="text-gray-700 mt-3"></p>
+      <button
+        id="btcErrorBtn"
+        class="hidden mt-3 inline-flex items-center rounded-md bg-red-600 text-white px-3 py-2 shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+      >
+        Помилка мережі. Спробуйте ще раз
+      </button>
+    </div>
+    <div class="bg-white shadow rounded-lg p-6 mt-6" data-card>
+      <h2 class="text-lg font-medium mb-2">План навчання</h2>
+      <div class="mt-4 flex items-center gap-3">
+        <input
+          id="todoInput"
+          type="text"
+          placeholder="Нова справа"
+          class="flex-1 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+          id="todoAddBtn"
+          class="inline-flex items-center rounded-md bg-blue-600 text-white px-4 py-2 shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Додати
+        </button>
+      </div>
+      <ul id="todoList" class="mt-4"></ul>
+    </div>
+  </main>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
