@@ -232,25 +232,28 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < ordered.length; i++) {
       var item = ordered[i];
       var li = document.createElement('li');
-      li.className = 'flex items-center justify-between border border-gray-200 rounded-md px-3 py-2 mb-2 shadow-sm bg-white';
+      li.className = 'flex flex-col sm:flex-row items-start sm:items-center justify-between border border-gray-200 rounded-md px-3 py-3 mb-2 shadow-sm bg-white gap-3';
       if (item.done) {
         li.className += ' opacity-60 bg-gray-100';
       }
       var textEl = document.createElement('span');
       textEl.textContent = item.text;
-      textEl.className = item.done ? 'line-through text-gray-400' : 'text-gray-800';
+      textEl.className = (item.done ? 'line-through text-gray-400' : 'text-gray-800') + ' break-words w-full sm:w-auto';
+      
       var actions = document.createElement('div');
-      actions.className = 'flex items-center gap-2';
+      actions.className = 'flex items-center gap-2 w-full sm:w-auto justify-end';
+      
       var toggleBtn = document.createElement('button');
       toggleBtn.textContent = item.done ? 'Зняти' : 'Виконано';
       toggleBtn.setAttribute('data-id', String(item.id));
       toggleBtn.setAttribute('data-action', 'toggle');
-      toggleBtn.className = 'rounded-md bg-green-600 text-white px-3 py-1 shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500';
+      toggleBtn.className = 'flex-1 sm:flex-none rounded-md bg-green-600 text-white px-3 py-1.5 shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm';
+      
       var delBtn = document.createElement('button');
       delBtn.textContent = 'Видалити';
       delBtn.setAttribute('data-id', String(item.id));
       delBtn.setAttribute('data-action', 'delete');
-      delBtn.className = 'rounded-md bg-red-600 text-white px-3 py-1 shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500';
+      delBtn.className = 'flex-1 sm:flex-none rounded-md bg-red-600 text-white px-3 py-1.5 shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 text-sm';
       actions.appendChild(toggleBtn);
       actions.appendChild(delBtn);
       li.appendChild(textEl);
