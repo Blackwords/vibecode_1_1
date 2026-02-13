@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project 0</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-900">
   <header class="border-b bg-white">
@@ -38,7 +39,7 @@
     </div>
 
     <div class="bg-white shadow rounded-lg p-4 md:p-6 mt-6" data-card>
-      <h2 class="text-lg font-medium mb-2">Калькулятор BTC → UAH</h2>
+      <h2 class="text-lg font-medium mb-2">Калькулятор BTC → USD</h2>
       <div class="text-sm text-gray-600 flex flex-wrap items-center gap-2">
         <span>Поточний курс:</span>
         <span id="btcPriceDisplay" class="font-semibold text-gray-800 transition-colors duration-300">—</span>
@@ -75,6 +76,28 @@
       >
         Помилка мережі. Спробуйте ще раз
       </button>
+    </div>
+
+    <!-- Секція графіків BTC -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div class="bg-white shadow rounded-lg p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:ring-2 hover:ring-blue-500/20" data-card>
+        <h2 class="text-sm font-medium mb-4 text-gray-500 uppercase tracking-wider">BTC за 24 год</h2>
+        <div class="h-48 relative" id="container-chart24h">
+          <canvas id="chart24h"></canvas>
+        </div>
+      </div>
+      <div class="bg-white shadow rounded-lg p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:ring-2 hover:ring-blue-500/20" data-card>
+        <h2 class="text-sm font-medium mb-4 text-gray-500 uppercase tracking-wider">BTC за 7 днів</h2>
+        <div class="h-48 relative" id="container-chart7d">
+          <canvas id="chart7d"></canvas>
+        </div>
+      </div>
+      <div class="bg-white shadow rounded-lg p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:ring-2 hover:ring-blue-500/20" data-card>
+        <h2 class="text-sm font-medium mb-4 text-gray-500 uppercase tracking-wider">BTC за 4 тижні</h2>
+        <div class="h-48 relative" id="container-chart30d">
+          <canvas id="chart30d"></canvas>
+        </div>
+      </div>
     </div>
 
     <div class="bg-white shadow rounded-lg p-4 md:p-6 mt-6" data-card>
