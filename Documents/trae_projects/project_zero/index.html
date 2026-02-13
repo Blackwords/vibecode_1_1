@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project 0</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <header class="border-b bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-4 md:py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <h1 class="text-xl md:text-2xl font-semibold text-center sm:text-left">Project 0: Контрольна панель</h1>
+      <button id="themeToggleBtn" class="inline-flex items-center gap-2 rounded-md bg-gray-200 text-gray-800 px-4 py-2 shadow hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto justify-center" title="Перемкнути тему">
+        <span id="themeIcon">☀️</span>
+        <span class="text-sm">Тема</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-6 md:py-10">
+    <div class="bg-white shadow rounded-lg p-4 md:p-6" data-card>
+      <h2 class="text-lg font-medium mb-2">Ласкаво просимо</h2>
+      <p id="statusText" class="text-gray-600 break-words">Це стартовий Dashboard для Project 0.</p>
+      <div class="mt-4 md:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <input
+          id="statusInput"
+          type="text"
+          placeholder="Введіть статус"
+          class="flex-1 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+          id="updateBtn"
+          class="inline-flex items-center justify-center rounded-md bg-blue-600 text-white px-4 py-2 shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Оновити статус
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 md:p-6 mt-6" data-card>
+      <h2 class="text-lg font-medium mb-2">Калькулятор BTC → USD</h2>
+      <div class="text-sm text-gray-600 flex flex-wrap items-center gap-2">
+        <span>Поточний курс:</span>
+        <span id="btcPriceDisplay" class="font-semibold text-gray-800 transition-colors duration-300">—</span>
+        <span id="btcTrendIcon" class="text-sm font-bold">—</span>
+        <span id="btcTrendTime" class="text-xs text-gray-500 w-full sm:w-auto"></span>
+      </div>
+      <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <input
+          id="btcAmount"
+          type="number"
+          step="0.00000001"
+          placeholder="Кількість BTC"
+          class="flex-1 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <div class="flex gap-2">
+          <button
+            id="calcBtcBtn"
+            class="flex-1 sm:flex-none inline-flex items-center justify-center rounded-md bg-blue-600 text-white px-4 py-2 shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Розрахувати
+          </button>
+          <button
+            id="refreshBtcPriceBtn"
+            class="flex-1 sm:flex-none inline-flex items-center justify-center rounded-md bg-blue-500 text-white px-4 py-2 shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Оновити
+          </button>
+        </div>
+      </div>
+      <p id="btcResult" class="text-gray-700 mt-3 font-medium"></p>
+      <button
+        id="btcErrorBtn"
+        class="hidden w-full mt-3 inline-flex items-center justify-center rounded-md bg-red-600 text-white px-3 py-2 shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+      >
+        Помилка мережі. Спробуйте ще раз
+      </button>
+    </div>
+
+    <!-- Секція графіків BTC -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div class="bg-white shadow rounded-lg p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:ring-2 hover:ring-blue-500/20" data-card>
+        <h2 class="text-sm font-medium mb-4 text-gray-500 uppercase tracking-wider">BTC за 24 год</h2>
+        <div class="h-48 relative" id="container-chart24h">
+          <canvas id="chart24h"></canvas>
+        </div>
+      </div>
+      <div class="bg-white shadow rounded-lg p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:ring-2 hover:ring-blue-500/20" data-card>
+        <h2 class="text-sm font-medium mb-4 text-gray-500 uppercase tracking-wider">BTC за 7 днів</h2>
+        <div class="h-48 relative" id="container-chart7d">
+          <canvas id="chart7d"></canvas>
+        </div>
+      </div>
+      <div class="bg-white shadow rounded-lg p-4 md:p-6 transition-all duration-300 hover:shadow-xl hover:ring-2 hover:ring-blue-500/20" data-card>
+        <h2 class="text-sm font-medium mb-4 text-gray-500 uppercase tracking-wider">BTC за 4 тижні</h2>
+        <div class="h-48 relative" id="container-chart30d">
+          <canvas id="chart30d"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 md:p-6 mt-6" data-card>
+      <h2 class="text-lg font-medium mb-2">План навчання</h2>
+      <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <input
+          id="todoInput"
+          type="text"
+          placeholder="Нова справа"
+          class="flex-1 border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+          id="todoAddBtn"
+          class="inline-flex items-center justify-center rounded-md bg-blue-600 text-white px-4 py-2 shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Додати
+        </button>
+      </div>
+      <ul id="todoList" class="mt-4 space-y-2"></ul>
+    </div>
+  </main>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
